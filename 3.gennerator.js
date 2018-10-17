@@ -3,34 +3,39 @@
 // 生成器函数可以暂停 默认的函数 会一路走到底
 // 碰到yield(生产 产出) 就可以实现暂停功能 
 // 可以往里面放东西
+
 // function* say() {
 //     yield 1
 //     yield 2
 //     yield 3
 // }
+
 // let it = say(); // it  就是iterator
 
-// function next() {
+// function nextt() {
+//     console.log(it.next)
 //     let { value, done } = it.next();
 //     console.log(value);
-//     if(!done) next(); // 直到迭代完成
+//     if(!done) nextt(); // 直到迭代完成
 // }
-// next();
-/*
+// nextt();
+
+
 function * say(){
+    console.log('start')
     let a = yield '去厕所1';
-    console.log(a);
+    console.log('a:',a);
     let b = yield '去厕所2';
-    console.log(b);
+    console.log('b:',b);
 }
 let it = say();
 //{value:'去厕所1',done:false}
-console.log(it.next()); // 第一次调用next时 是不允许传参的(你传递了也没有效果)
+console.log('first:',it.next()); // 第一次调用next时 是不允许传参的(你传递了也没有效果)
 // a= hello {value:'去厕所2',done:false}
-console.log(it.next('hello'))
+console.log('second:',it.next('hello2'))
 // b=xxx {value:undefined,done:true}
-console.log(it.next('xxx'));
-*/
+console.log('third:',it.next('xxx'));
+
 // 可以配合promise来使用
 let bluebird = require('bluebird');
 let fs = require('fs');

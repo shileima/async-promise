@@ -31,8 +31,9 @@ function isType(type) { // [object String]
 let types = ['String','Undefined','Function','Number'];
 let util = {}; // util.isString isUndefined
 types.forEach(t=>{
-    util['is'+t] = isType(t);
+    util['is'+t] = isType(t).toString();
 });
+console.log(util)
 console.log(util.isString('hello'));
 
 
@@ -46,11 +47,13 @@ console.log(util.isString('hello'));
 // promise的好处
 // 可以解决一些异步的问题
 // 1.回调地狱 回调的嵌套关系
- let fs = require('fs');
+// let fs = require('fs');
 // fs.readFile('1.txt','utf8',function(err,data){
+//     console.log('data1',data)
 //     fs.readFile(data,'utf8',function(err,data){
+//         console.log('data2',data)
 //         fs.readFile(data,'utf8',function(err,data){
-//             console.log(data);
+//             console.log('data3',data);
 //         });
 //     });
 // });
@@ -60,24 +63,29 @@ console.log(util.isString('hello'));
 // let fs = require('fs');
 // function after(times,callback){
 //     let arr = [];
-//     return function(data){
-//         arr.push(data);
+//     let count = 0;
+//     return function(){
+//         arr.push(count++);
 //         if(--times == 0){
 //             callback(arr);
 //         }
+//         return arr;
 //     }
 // }
 // let fn = after(2,function(data){
 //     console.log(data);
 // })
 
+// // 执行两次才有结果
+// fn()
+// fn()
 
 // 发布订阅 观察者
 // 发布订阅 发布(发布时一次执行) 订阅(先把他暂存起来)
 let fs = require('fs');
 let event = {
     arr:[],
-    result:[],
+    result:["1.txt"],
     on(fn){
         this.arr.push(fn);
     },
